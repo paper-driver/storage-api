@@ -7,5 +7,6 @@ security:
       user-info-uri: https://api.github.com/user
 
 spring:
+  profile: dev
   jackson:
-    data-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat

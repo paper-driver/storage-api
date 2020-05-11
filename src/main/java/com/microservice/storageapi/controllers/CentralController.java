@@ -15,7 +15,8 @@ public class CentralController {
 
     @GetMapping("/access")
     public ResponseEntity<?> checkAccessibility(){
-        return ResponseEntity.ok().body("You are allowed to access Storage API.");
+        logger.info("replying the check request");
+        return ResponseEntity.ok("You are allowed to access Storage API.");
     }
 
 }
