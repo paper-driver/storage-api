@@ -1,6 +1,8 @@
 package com.microservice.storageapi.configurations;
 
+import com.microservice.storageapi.configurations.exceptions.AuthEntryPointHandler;
 import org.apache.catalina.filters.RequestDumperFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -14,6 +16,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableResourceServer
 public class ResourceSecurityConfig extends ResourceServerConfigurerAdapter {
 
+    @Autowired
+    AuthEntryPointHandler unauthorizedHandler;
+
     @Profile("!cloud")
     @Bean
     RequestDumperFilter requestDumperFilter() {
@@ -22,11 +27,15 @@ public class ResourceSecurityConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+        http.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/api/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/**").permitAll();
+
+        http.addFilterBefore();
     }
+
+
 
 }
