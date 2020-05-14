@@ -11,7 +11,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
 @Configuration
-@EnableResourceServer
 public class ResourceSecurityConfig extends ResourceServerConfigurerAdapter {
 
     @Profile("!cloud")
@@ -25,8 +24,9 @@ public class ResourceSecurityConfig extends ResourceServerConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/**").permitAll();
+                .antMatchers(HttpMethod.GET, "/api/**").access("hasRole('USER')")
+                .antMatchers(HttpMethod.POST, "/api/**").access("hasRole('USER')")
+                .anyRequest().authenticated();
     }
 
 }
