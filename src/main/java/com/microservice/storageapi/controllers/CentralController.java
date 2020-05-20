@@ -16,9 +16,10 @@ public class CentralController {
 
     @GetMapping("/access")
     @PreAuthorize("hasRole('ROLE_STORAGE_ADMIN')")
-    public ResponseEntity<?> checkAccessibility(){
+    public String checkAccessibility(){
         logger.info("replying the check request");
-        return ResponseEntity.ok("You are allowed to access Storage API.");
+        return "You are allowed to access Storage API.";
+//        return ResponseEntity.ok("You are allowed to access Storage API.");
     }
 
 }

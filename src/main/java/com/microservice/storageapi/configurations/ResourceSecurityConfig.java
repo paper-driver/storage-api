@@ -23,11 +23,11 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceSecurityConfig extends ResourceServerConfigurerAdapter {
 
-//    @Profile("!cloud")
-//    @Bean
-//    RequestDumperFilter requestDumperFilter() {
-//        return new RequestDumperFilter();
-//    }
+    @Profile("!cloud")
+    @Bean
+    RequestDumperFilter requestDumperFilter() {
+        return new RequestDumperFilter();
+    }
 
     @Bean
     @ConfigurationProperties(prefix="spring.datasource")
