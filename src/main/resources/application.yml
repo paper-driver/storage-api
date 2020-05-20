@@ -1,12 +1,37 @@
 server:
   port: 8081
 
-security:
-  oauth2:
-    resource:
-      user-info-uri: https://api.github.com/user
+#security:
+#  oauth2:
+#    client:
+#      clientId: local8080_to_storage
+#      clientSecret: storagelocker
+#    resource:
+#      userInfoUri: http://localhost:4300/user
+#      user-info-uri: https://api.github.com/user
+
 
 spring:
   profile: dev
   jackson:
     date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+
+  devtools:
+    livereload:
+      port: 35730
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: yuxuanmao
+    jdbc-url: jdbc:postgresql://personal-oauth2-server-db.cno7ndfgvs68.us-east-2.rds.amazonaws.com:5432/auth_db
+    username: yuxuanmao
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
