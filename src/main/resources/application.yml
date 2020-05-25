@@ -16,6 +16,11 @@ spring:
   jackson:
     date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
 
+  servlet:
+    multipart:
+      max-file-size: 500KB
+      max-request-size: 500KB
+
   devtools:
     livereload:
       port: 35730
