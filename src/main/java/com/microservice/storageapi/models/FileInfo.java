@@ -3,10 +3,16 @@ package com.microservice.storageapi.models;
 public class FileInfo {
     private String name;
     private String url;
+    private String path;
 
-    public FileInfo(String name, String url) {
+    public FileInfo() {
+
+    }
+
+    public FileInfo(String name, String url, String path) {
         this.name = name;
         this.url = url;
+        this.path = path;
     }
 
     public String getName() {
@@ -24,4 +30,13 @@ public class FileInfo {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public String getPath() {
+        return this.path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 }
+
